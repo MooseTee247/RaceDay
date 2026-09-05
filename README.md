@@ -28,3 +28,5 @@ We use GitHub Actions to automatically validate the repository structure and ens
 
 *(Replace the placeholder above with the actual screenshot link of your successful green workflow build once you push your changes!)*
 Update #1 for rubric requirement
+
+Update #2 for rubric requirement
