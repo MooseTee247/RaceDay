@@ -68,3 +68,5 @@ Update #19 for rubric requirement
 Update #20 for rubric requirement
 
 Project progress update #1
+
+Project progress update #2
