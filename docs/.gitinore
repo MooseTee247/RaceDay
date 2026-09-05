@@ -1,0 +1,13 @@
+# Ignore user profile and system junk
+../../
+AppData/
+Cookies/
+Local Settings/
+My Documents/
+NetHood/
+PrintHood/
+Recent/
+SendTo/
+Start Menu/
+Templates/
+NTUSER.*

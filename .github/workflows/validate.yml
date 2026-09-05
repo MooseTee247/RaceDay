@@ -1,0 +1,44 @@
+name: Validate Project Documentation
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      - name: Check if /docs Directory Exists
+        run: |
+          if [ ! -d "docs" ]; then
+            echo "::error::The /docs folder is missing from the root directory."
+            exit 1
+          fi
+          echo "/docs folder found successfully."
+
+      - name: Verify Required Planning Files
+        run: |
+          # Check for SQL database script
+          if ! find docs/ -type f -name "*.sql" | grep -q .; then
+            echo "::error::Missing SQL script file inside /docs/"
+            exit 1
+          fi
+
+          # Check for endpoints documentation
+          if [ ! -f "docs/endpoints.md" ]; then
+            echo "::error::Missing endpoints.md file inside /docs/"
+            exit 1
+          fi
+
+          # Check for ERD diagram (image or drawio)
+          if ! find docs/ -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.drawio" \) | grep -q .; then
+            echo "::error::Missing ERD diagram file (.png, .jpg, or .drawio) inside /docs/"
+            exit 1
+          fi
+
+          echo "All required documentation files are present and valid!"
